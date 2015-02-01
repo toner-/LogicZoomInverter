@@ -40,8 +40,8 @@
     CFRunLoopSourceRef	objRunLoopSource;
     
     /*Create an event tap to watch for scroll events*/
-    objMachPort			= CGEventTapCreate (kCGSessionEventTap, //kCGHIDEventTap,
-											kCGTailAppendEventTap, //kCGHeadInsertEventTap,
+    objMachPort			= CGEventTapCreate (kCGSessionEventTap,
+											kCGTailAppendEventTap,
 											kCGEventTapOptionDefault, 
 											CGEventMaskBit(kCGEventScrollWheel),
 											EventTapCallBack,
