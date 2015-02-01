@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F51889251A7DD887006F02F1 /* ScreenShot.png in Resources */ = {isa = PBXBuildFile; fileRef = F51889241A7DD887006F02F1 /* ScreenShot.png */; };
+		F51889271A7DD8AF006F02F1 /* LogicZoomInverter.zip in Resources */ = {isa = PBXBuildFile; fileRef = F51889261A7DD8AF006F02F1 /* LogicZoomInverter.zip */; };
 		F58B423A13EE316D00E71642 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B423913EE316D00E71642 /* Cocoa.framework */; };
 		F58B424413EE316D00E71642 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F58B424213EE316D00E71642 /* InfoPlist.strings */; };
 		F58B424613EE316D00E71642 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58B424513EE316D00E71642 /* main.m */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F51889241A7DD887006F02F1 /* ScreenShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScreenShot.png; sourceTree = "<group>"; };
+		F51889261A7DD8AF006F02F1 /* LogicZoomInverter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = LogicZoomInverter.zip; sourceTree = "<group>"; };
 		F58B423513EE316D00E71642 /* LogicZoomInverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogicZoomInverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58B423913EE316D00E71642 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F58B423C13EE316D00E71642 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -73,10 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F51889231A7DD850006F02F1 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				F51889261A7DD8AF006F02F1 /* LogicZoomInverter.zip */,
+				F51889241A7DD887006F02F1 /* ScreenShot.png */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
 		F58B422A13EE316C00E71642 = {
 			isa = PBXGroup;
 			children = (
 				F58B423F13EE316D00E71642 /* LogicZoomInverter */,
+				F51889231A7DD850006F02F1 /* Info */,
 				F58B425C13EE316D00E71642 /* LogicZoomInverterTests */,
 				F58B423813EE316D00E71642 /* Frameworks */,
 				F58B423613EE316D00E71642 /* Products */,
@@ -227,8 +241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58B424413EE316D00E71642 /* InfoPlist.strings in Resources */,
+				F51889271A7DD8AF006F02F1 /* LogicZoomInverter.zip in Resources */,
 				F58B424A13EE316D00E71642 /* Credits.rtf in Resources */,
 				F58B425013EE316D00E71642 /* MainMenu.xib in Resources */,
+				F51889251A7DD887006F02F1 /* ScreenShot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
