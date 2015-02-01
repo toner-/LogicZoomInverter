@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F58B423A13EE316D00E71642 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B423913EE316D00E71642 /* Cocoa.framework */; };
+		F58B424413EE316D00E71642 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F58B424213EE316D00E71642 /* InfoPlist.strings */; };
+		F58B424613EE316D00E71642 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58B424513EE316D00E71642 /* main.m */; };
+		F58B424A13EE316D00E71642 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F58B424813EE316D00E71642 /* Credits.rtf */; };
+		F58B424D13EE316D00E71642 /* LogicZoomInverterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58B424C13EE316D00E71642 /* LogicZoomInverterAppDelegate.m */; };
+		F58B425013EE316D00E71642 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58B424E13EE316D00E71642 /* MainMenu.xib */; };
+		F58B425913EE316D00E71642 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B423913EE316D00E71642 /* Cocoa.framework */; };
+		F58B426113EE316D00E71642 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F58B425F13EE316D00E71642 /* InfoPlist.strings */; };
+		F58B426313EE316D00E71642 /* LogicZoomInverterTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F58B426213EE316D00E71642 /* LogicZoomInverterTests.h */; };
+		F58B426513EE316D00E71642 /* LogicZoomInverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F58B426413EE316D00E71642 /* LogicZoomInverterTests.m */; };
+		F58B427013EE31E900E71642 /* ZoomInverter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58B426F13EE31E900E71642 /* ZoomInverter.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F58B425A13EE316D00E71642 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F58B422C13EE316C00E71642 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F58B423413EE316C00E71642;
+			remoteInfo = LogicZoomInverter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F58B423513EE316D00E71642 /* LogicZoomInverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogicZoomInverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F58B423913EE316D00E71642 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F58B423C13EE316D00E71642 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F58B423D13EE316D00E71642 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F58B423E13EE316D00E71642 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F58B424113EE316D00E71642 /* LogicZoomInverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicZoomInverter-Info.plist"; sourceTree = "<group>"; };
+		F58B424313EE316D00E71642 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F58B424513EE316D00E71642 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F58B424713EE316D00E71642 /* LogicZoomInverter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogicZoomInverter-Prefix.pch"; sourceTree = "<group>"; };
+		F58B424913EE316D00E71642 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F58B424B13EE316D00E71642 /* LogicZoomInverterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicZoomInverterAppDelegate.h; sourceTree = "<group>"; };
+		F58B424C13EE316D00E71642 /* LogicZoomInverterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicZoomInverterAppDelegate.m; sourceTree = "<group>"; };
+		F58B424F13EE316D00E71642 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F58B425613EE316D00E71642 /* LogicZoomInverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicZoomInverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F58B425E13EE316D00E71642 /* LogicZoomInverterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicZoomInverterTests-Info.plist"; sourceTree = "<group>"; };
+		F58B426013EE316D00E71642 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F58B426213EE316D00E71642 /* LogicZoomInverterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicZoomInverterTests.h; sourceTree = "<group>"; };
+		F58B426413EE316D00E71642 /* LogicZoomInverterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicZoomInverterTests.m; sourceTree = "<group>"; };
+		F58B426E13EE31E900E71642 /* ZoomInverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomInverter.h; sourceTree = "<group>"; };
+		F58B426F13EE31E900E71642 /* ZoomInverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomInverter.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F58B423213EE316C00E71642 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58B423A13EE316D00E71642 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F58B425213EE316D00E71642 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58B425913EE316D00E71642 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F58B422A13EE316C00E71642 = {
+			isa = PBXGroup;
+			children = (
+				F58B423F13EE316D00E71642 /* LogicZoomInverter */,
+				F58B425C13EE316D00E71642 /* LogicZoomInverterTests */,
+				F58B423813EE316D00E71642 /* Frameworks */,
+				F58B423613EE316D00E71642 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F58B423613EE316D00E71642 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F58B423513EE316D00E71642 /* LogicZoomInverter.app */,
+				F58B425613EE316D00E71642 /* LogicZoomInverterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F58B423813EE316D00E71642 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F58B423913EE316D00E71642 /* Cocoa.framework */,
+				F58B423B13EE316D00E71642 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F58B423B13EE316D00E71642 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F58B423C13EE316D00E71642 /* AppKit.framework */,
+				F58B423D13EE316D00E71642 /* CoreData.framework */,
+				F58B423E13EE316D00E71642 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F58B423F13EE316D00E71642 /* LogicZoomInverter */ = {
+			isa = PBXGroup;
+			children = (
+				F58B424B13EE316D00E71642 /* LogicZoomInverterAppDelegate.h */,
+				F58B424C13EE316D00E71642 /* LogicZoomInverterAppDelegate.m */,
+				F58B424E13EE316D00E71642 /* MainMenu.xib */,
+				F58B424013EE316D00E71642 /* Supporting Files */,
+				F58B426E13EE31E900E71642 /* ZoomInverter.h */,
+				F58B426F13EE31E900E71642 /* ZoomInverter.m */,
+			);
+			path = LogicZoomInverter;
+			sourceTree = "<group>";
+		};
+		F58B424013EE316D00E71642 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F58B424113EE316D00E71642 /* LogicZoomInverter-Info.plist */,
+				F58B424213EE316D00E71642 /* InfoPlist.strings */,
+				F58B424513EE316D00E71642 /* main.m */,
+				F58B424713EE316D00E71642 /* LogicZoomInverter-Prefix.pch */,
+				F58B424813EE316D00E71642 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F58B425C13EE316D00E71642 /* LogicZoomInverterTests */ = {
+			isa = PBXGroup;
+			children = (
+				F58B426213EE316D00E71642 /* LogicZoomInverterTests.h */,
+				F58B426413EE316D00E71642 /* LogicZoomInverterTests.m */,
+				F58B425D13EE316D00E71642 /* Supporting Files */,
+			);
+			path = LogicZoomInverterTests;
+			sourceTree = "<group>";
+		};
+		F58B425D13EE316D00E71642 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F58B425E13EE316D00E71642 /* LogicZoomInverterTests-Info.plist */,
+				F58B425F13EE316D00E71642 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F58B423413EE316C00E71642 /* LogicZoomInverter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F58B426813EE316D00E71642 /* Build configuration list for PBXNativeTarget "LogicZoomInverter" */;
+			buildPhases = (
+				F58B423113EE316C00E71642 /* Sources */,
+				F58B423213EE316C00E71642 /* Frameworks */,
+				F58B423313EE316C00E71642 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogicZoomInverter;
+			productName = LogicZoomInverter;
+			productReference = F58B423513EE316D00E71642 /* LogicZoomInverter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F58B425513EE316D00E71642 /* LogicZoomInverterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F58B426B13EE316D00E71642 /* Build configuration list for PBXNativeTarget "LogicZoomInverterTests" */;
+			buildPhases = (
+				F58B425113EE316D00E71642 /* Sources */,
+				F58B425213EE316D00E71642 /* Frameworks */,
+				F58B425313EE316D00E71642 /* Resources */,
+				F58B425413EE316D00E71642 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F58B425B13EE316D00E71642 /* PBXTargetDependency */,
+			);
+			name = LogicZoomInverterTests;
+			productName = LogicZoomInverterTests;
+			productReference = F58B425613EE316D00E71642 /* LogicZoomInverterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F58B422C13EE316C00E71642 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastTestingUpgradeCheck = 0610;
+				LastUpgradeCheck = 0610;
+			};
+			buildConfigurationList = F58B422F13EE316C00E71642 /* Build configuration list for PBXProject "LogicZoomInverter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F58B422A13EE316C00E71642;
+			productRefGroup = F58B423613EE316D00E71642 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F58B423413EE316C00E71642 /* LogicZoomInverter */,
+				F58B425513EE316D00E71642 /* LogicZoomInverterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F58B423313EE316C00E71642 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58B424413EE316D00E71642 /* InfoPlist.strings in Resources */,
+				F58B424A13EE316D00E71642 /* Credits.rtf in Resources */,
+				F58B425013EE316D00E71642 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F58B425313EE316D00E71642 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58B426113EE316D00E71642 /* InfoPlist.strings in Resources */,
+				F58B426313EE316D00E71642 /* LogicZoomInverterTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F58B425413EE316D00E71642 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F58B423113EE316C00E71642 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58B424613EE316D00E71642 /* main.m in Sources */,
+				F58B424D13EE316D00E71642 /* LogicZoomInverterAppDelegate.m in Sources */,
+				F58B427013EE31E900E71642 /* ZoomInverter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F58B425113EE316D00E71642 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F58B426513EE316D00E71642 /* LogicZoomInverterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F58B425B13EE316D00E71642 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F58B423413EE316C00E71642 /* LogicZoomInverter */;
+			targetProxy = F58B425A13EE316D00E71642 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F58B424213EE316D00E71642 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58B424313EE316D00E71642 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F58B424813EE316D00E71642 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58B424913EE316D00E71642 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F58B424E13EE316D00E71642 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58B424F13EE316D00E71642 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F58B425F13EE316D00E71642 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58B426013EE316D00E71642 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F58B426613EE316D00E71642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F58B426713EE316D00E71642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F58B426913EE316D00E71642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogicZoomInverter/LogicZoomInverter-Prefix.pch";
+				INFOPLIST_FILE = "LogicZoomInverter/LogicZoomInverter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F58B426A13EE316D00E71642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogicZoomInverter/LogicZoomInverter-Prefix.pch";
+				INFOPLIST_FILE = "LogicZoomInverter/LogicZoomInverter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F58B426C13EE316D00E71642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LogicZoomInverter.app/Contents/MacOS/LogicZoomInverter";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogicZoomInverter/LogicZoomInverter-Prefix.pch";
+				INFOPLIST_FILE = "LogicZoomInverterTests/LogicZoomInverterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		F58B426D13EE316D00E71642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LogicZoomInverter.app/Contents/MacOS/LogicZoomInverter";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogicZoomInverter/LogicZoomInverter-Prefix.pch";
+				INFOPLIST_FILE = "LogicZoomInverterTests/LogicZoomInverterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F58B422F13EE316C00E71642 /* Build configuration list for PBXProject "LogicZoomInverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F58B426613EE316D00E71642 /* Debug */,
+				F58B426713EE316D00E71642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F58B426813EE316D00E71642 /* Build configuration list for PBXNativeTarget "LogicZoomInverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F58B426913EE316D00E71642 /* Debug */,
+				F58B426A13EE316D00E71642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F58B426B13EE316D00E71642 /* Build configuration list for PBXNativeTarget "LogicZoomInverterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F58B426C13EE316D00E71642 /* Debug */,
+				F58B426D13EE316D00E71642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F58B422C13EE316C00E71642 /* Project object */;
+}
