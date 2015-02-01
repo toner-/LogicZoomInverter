@@ -1,0 +1,1 @@
+This program is used to invert and/or slow down the horizontal zoom, vertical zoom, multi zoom, and horizontal scroll functionality in Apple's Logic Pro. You must enable access for assistive devices in the universal access system preference pane for this program to function properly.
