@@ -36,20 +36,20 @@
 - (void)main
 {
 	
-    CFRunLoopRef		objRunLoopRef;
-    CFRunLoopSourceRef	objRunLoopSource;
+    CFRunLoopRef objRunLoopRef;
+    CFRunLoopSourceRef objRunLoopSource;
     
     /*Create an event tap to watch for scroll events*/
-    objMachPort			= CGEventTapCreate (kCGSessionEventTap,
+    objMachPort = CGEventTapCreate (kCGSessionEventTap,
 											kCGTailAppendEventTap,
 											kCGEventTapOptionDefault, 
 											CGEventMaskBit(kCGEventScrollWheel),
 											EventTapCallBack,
 											self);
 
-    objRunLoopSource	= CFMachPortCreateRunLoopSource (NULL, objMachPort, 0);
+    objRunLoopSource = CFMachPortCreateRunLoopSource (NULL, objMachPort, 0);
     
-    objRunLoopRef		= CFRunLoopGetCurrent();
+    objRunLoopRef = CFRunLoopGetCurrent();
     
     CFRunLoopAddSource(objRunLoopRef, objRunLoopSource, kCFRunLoopCommonModes);
     
@@ -69,7 +69,7 @@
         intNewValue = ceil(((double)intCurrentValue)*fltFactor);
     
     if(blnInvert)
-        intNewValue     = -intNewValue;
+        intNewValue = -intNewValue;
     
     return intNewValue;
 }
@@ -81,7 +81,7 @@
     dblNewValue = dblCurrentValue*fltFactor;
     
     if(blnInvert)
-        dblNewValue     = -1.0*dblNewValue;
+        dblNewValue = -1.0*dblNewValue;
     
     return dblNewValue;
 }
@@ -132,7 +132,7 @@ CGEventRef EventTapCallBack(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     CGEventFlags objEventFlags = CGEventGetFlags(event) & (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskControl);
     int64_t intRawDelta1, intRawDelta2, intRawPointDelta1, intRawPointDelta2;
     double dblFixedDelta1, dblFixedDelta2;
-
+    
     intRawDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
     intRawDelta2 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
     intRawPointDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
