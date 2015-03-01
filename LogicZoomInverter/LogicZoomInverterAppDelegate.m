@@ -12,7 +12,7 @@
 
 @implementation LogicZoomInverterAppDelegate
 
-@synthesize window, objQue, chkInvertHorizontalZoom, chkInvertVerticalZoom, chkInvertMultiZoom, chkInvertHorizontalScroll, sldFactorHorizontalZoom, sldFactorVerticalZoom, sldFactorMultiZoom, sldFactorHorizontalScroll;
+@synthesize window, objQue;
 
 - (id)init
 {
@@ -28,14 +28,22 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSNumber numberWithBool:YES], @"HorizontalZoomEnabled",
-                                 [NSNumber numberWithBool:YES], @"MultiZoomEnabled",
-                                 [NSNumber numberWithBool:YES], @"VerticalZoomEnabled",
-                                 [NSNumber numberWithBool:NO], @"HorizontalScrollEnabled",
-                                 [NSNumber numberWithDouble:1.0], @"HorizontalZoomFactor",
-                                 [NSNumber numberWithDouble:1.0], @"VerticalZoomFactor",
-                                 [NSNumber numberWithDouble:1.0], @"HorizontalScrollFactor",
-                                 [NSNumber numberWithDouble:1.0], @"MultiZoomFactor",
+                                 [NSNumber numberWithBool:YES], @"Device1HorizontalZoomEnabled",
+                                 [NSNumber numberWithBool:YES], @"Device1MultiZoomEnabled",
+                                 [NSNumber numberWithBool:YES], @"Device1VerticalZoomEnabled",
+                                 [NSNumber numberWithBool:NO], @"Device1HorizontalScrollEnabled",
+                                 [NSNumber numberWithDouble:1.0], @"Device1HorizontalZoomFactor",
+                                 [NSNumber numberWithDouble:1.0], @"Device1VerticalZoomFactor",
+                                 [NSNumber numberWithDouble:1.0], @"Device1HorizontalScrollFactor",
+                                 [NSNumber numberWithDouble:1.0], @"Device1MultiZoomFactor",
+                                 [NSNumber numberWithBool:YES], @"Device2HorizontalZoomEnabled",
+                                 [NSNumber numberWithBool:YES], @"Device2MultiZoomEnabled",
+                                 [NSNumber numberWithBool:YES], @"Device2VerticalZoomEnabled",
+                                 [NSNumber numberWithBool:NO], @"Device2HorizontalScrollEnabled",
+                                 [NSNumber numberWithDouble:1.0], @"Device2HorizontalZoomFactor",
+                                 [NSNumber numberWithDouble:1.0], @"Device2VerticalZoomFactor",
+                                 [NSNumber numberWithDouble:1.0], @"Device2HorizontalScrollFactor",
+                                 [NSNumber numberWithDouble:1.0], @"Device2MultiZoomFactor",
                                  nil];
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
@@ -48,10 +56,22 @@
 		return;
     
 	[self.objQue addOperation:objZoomInv];
-    
+
 	[objZoomInv release];
+   
+    [self UpdateZoomInverterSettings:0];
     
-    [self UpdateZoomInverterSettings];
+    objZoomInv = [[ZoomInverter alloc] init];
+    if(!objZoomInv)
+        return;
+    objZoomInv.ForDeviceWithProcessId = true;
+    
+    [self.objQue addOperation:objZoomInv];
+    
+    [objZoomInv release];
+    
+    [self UpdateZoomInverterSettings:1];
+    
     
 //    /*Open Logic Pro*/
 //	NSWorkspace *obj;
@@ -63,7 +83,8 @@
 
 - (void) AppSettingsChanged:(NSNotification*)notification
 {
-    [self UpdateZoomInverterSettings];
+    [self UpdateZoomInverterSettings:0];
+    [self UpdateZoomInverterSettings:1];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)LogicZoomInverterAppDelegate
@@ -77,21 +98,21 @@
     [super dealloc];
 }
 
-- (void) UpdateZoomInverterSettings
+- (void) UpdateZoomInverterSettings:(int) zoomInverterIndex
 {
-    ZoomInverter *objZoomInv = [self.objQue.operations objectAtIndex:0];
+    ZoomInverter *objZoomInv = [self.objQue.operations objectAtIndex:zoomInverterIndex];
     
     if(!objZoomInv)
         return;
     
-    objZoomInv.InvertHorizontalZoom = [[NSUserDefaults standardUserDefaults] boolForKey:@"HorizontalZoomEnabled"];
-    objZoomInv.InvertVerticalZoom = [[NSUserDefaults standardUserDefaults] boolForKey:@"VerticalZoomEnabled"];
-    objZoomInv.InvertMultiZoom = [[NSUserDefaults standardUserDefaults] boolForKey:@"MultiZoomEnabled"];
-    objZoomInv.InvertHorizontalScroll = [[NSUserDefaults standardUserDefaults] boolForKey:@"HorizontalScrollEnabled"];
-    objZoomInv.FactorHorizontalZoom = [[NSUserDefaults standardUserDefaults] doubleForKey:@"HorizontalZoomFactor"];
-    objZoomInv.FactorVerticalZoom = [[NSUserDefaults standardUserDefaults] doubleForKey:@"VerticalZoomFactor"];
-    objZoomInv.FactorHorizontalScroll = [[NSUserDefaults standardUserDefaults] doubleForKey:@"HorizontalScrollFactor"];
-    objZoomInv.FactorMultiZoom = [[NSUserDefaults standardUserDefaults] doubleForKey:@"MultiZoomFactor"];
+    objZoomInv.InvertHorizontalZoom = [[NSUserDefaults standardUserDefaults] boolForKey:@"Device1HorizontalZoomEnabled"];
+    objZoomInv.InvertVerticalZoom = [[NSUserDefaults standardUserDefaults] boolForKey:@"Device1VerticalZoomEnabled"];
+    objZoomInv.InvertMultiZoom = [[NSUserDefaults standardUserDefaults] boolForKey:@"Device1MultiZoomEnabled"];
+    objZoomInv.InvertHorizontalScroll = [[NSUserDefaults standardUserDefaults] boolForKey:@"Device1HorizontalScrollEnabled"];
+    objZoomInv.FactorHorizontalZoom = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Device1HorizontalZoomFactor"];
+    objZoomInv.FactorVerticalZoom = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Device1VerticalZoomFactor"];
+    objZoomInv.FactorHorizontalScroll = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Device1HorizontalScrollFactor"];
+    objZoomInv.FactorMultiZoom = [[NSUserDefaults standardUserDefaults] doubleForKey:@"Device1MultiZoomFactor"];
 }
 
 @end

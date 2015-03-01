@@ -10,7 +10,7 @@
 
 @implementation ZoomInverter
 
-@synthesize InvertHorizontalZoom, InvertMultiZoom, InvertVerticalZoom, InvertHorizontalScroll, FactorHorizontalZoom, FactorHorizontalScroll, FactorMultiZoom, FactorVerticalZoom;
+@synthesize InvertHorizontalZoom, InvertMultiZoom, InvertVerticalZoom, InvertHorizontalScroll, FactorHorizontalZoom, FactorHorizontalScroll, FactorMultiZoom, FactorVerticalZoom, ForDeviceWithProcessId;
 
 - (id)init
 {
@@ -91,7 +91,7 @@ CGEventRef EventTapCallBack(CGEventTapProxy proxy, CGEventType type, CGEventRef 
 	/*Make sure we have a scroll event and that we have a pointer to the zoom object*/
 	if(type != kCGEventScrollWheel || !refcon)
         return event;
-	
+    
 	/*
 	 This is a list of all key combos for axis 1
 	 
@@ -129,10 +129,15 @@ CGEventRef EventTapCallBack(CGEventTapProxy proxy, CGEventType type, CGEventRef 
 	*/
 	
 	ZoomInverter *objZoomInv = refcon;
+    
+    if(objZoomInv.ForDeviceWithProcessId && CGEventGetDoubleValueField(event, kCGEventSourceUnixProcessID) == 0)
+        return event;
+    
     CGEventFlags objEventFlags = CGEventGetFlags(event) & (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskControl);
-    int64_t intRawDelta1, intRawDelta2, intRawPointDelta1, intRawPointDelta2;
+    int64_t intRawDelta1, intRawDelta2, intRawPointDelta1, intRawPointDelta2, intPid;
     double dblFixedDelta1, dblFixedDelta2;
     
+    intPid = CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
     intRawDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
     intRawDelta2 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
     intRawPointDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);

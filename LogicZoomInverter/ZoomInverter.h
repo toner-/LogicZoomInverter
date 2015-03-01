@@ -22,6 +22,7 @@ CGEventRef EventTapCallBack (CGEventTapProxy proxy, CGEventType type, CGEventRef
 @property (nonatomic) double FactorHorizontalScroll;
 @property (nonatomic) double FactorVerticalZoom;
 @property (nonatomic) double FactorMultiZoom;
+@property (nonatomic) BOOL ForDeviceWithProcessId;
 
 - (void) Enable;
 - (void) Disable;
