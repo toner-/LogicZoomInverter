@@ -8,25 +8,30 @@
 
 #import <Cocoa/Cocoa.h>
 
-CGEventRef EventTapCallBack (CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
+CGEventRef eventTapCallBack (CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 
 @interface ZoomInverter : NSOperation{
-    CFMachPortRef objMachPort;
+    CFMachPortRef machPort;
 }
 
-@property (nonatomic) BOOL InvertHorizontalZoom;
-@property (nonatomic) BOOL InvertVerticalZoom;
-@property (nonatomic) BOOL InvertMultiZoom;
-@property (nonatomic) BOOL InvertHorizontalScroll;
-@property (nonatomic) double FactorHorizontalZoom;
-@property (nonatomic) double FactorHorizontalScroll;
-@property (nonatomic) double FactorVerticalZoom;
-@property (nonatomic) double FactorMultiZoom;
-@property (nonatomic) BOOL ForDeviceWithProcessId;
+@property (nonatomic) struct DeviceSettings nonPidDeviceSettings;
+@property (nonatomic) struct DeviceSettings pidDeviceSettings;
 
-- (void) Enable;
-- (void) Disable;
-- (int64_t) NewInt64DeltaValue:(int64_t) intCurrentValue Factor: (double) fltFactor Invert:(BOOL) blnInvert;
-- (double) NewDoubleDeltaValue:(double) dblCurrentValue Factor: (double) fltFactor Invert:(BOOL) blnInvert;
+- (void) enable;
+- (void) disable;
+- (int64_t) newInt64DeltaValue:(int64_t) currentValue factor: (double) factor invert:(BOOL) invert;
+- (double) newDoubleDeltaValue:(double) currentValue factor: (double) factor invert:(BOOL) invert;
+
+struct DeviceSettings
+{
+    BOOL invertHorizontalZoom;
+    BOOL invertVerticalZoom;
+    BOOL invertMultiZoom;
+    BOOL invertHorizontalScroll;
+    double factorHorizontalZoom;
+    double factorHorizontalScroll;
+    double factorVerticalZoom;
+    double factorMultiZoom;
+};
 
 @end

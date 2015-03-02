@@ -10,84 +10,72 @@
 
 @implementation ZoomInverter
 
-@synthesize InvertHorizontalZoom, InvertMultiZoom, InvertVerticalZoom, InvertHorizontalScroll, FactorHorizontalZoom, FactorHorizontalScroll, FactorMultiZoom, FactorVerticalZoom, ForDeviceWithProcessId;
+@synthesize nonPidDeviceSettings, pidDeviceSettings;
 
-- (id)init
-{
+- (id)init {
     [super init];
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [super dealloc];
 }
 
-- (void) Disable
-{
-    CGEventTapEnable(objMachPort, false);
+- (void) disable {
+    CGEventTapEnable(machPort, false);
 }
 
-- (void) Enable
-{
-    CGEventTapEnable(objMachPort, true);
+- (void) enable {
+    CGEventTapEnable(machPort, true);
 }
 
-- (void)main
-{
-	
-    CFRunLoopRef objRunLoopRef;
-    CFRunLoopSourceRef objRunLoopSource;
+- (void)main {
+    CFRunLoopRef runLoopRef;
+    CFRunLoopSourceRef runLoopSource;
     
     /*Create an event tap to watch for scroll events*/
-    objMachPort = CGEventTapCreate (kCGSessionEventTap,
-											kCGTailAppendEventTap,
-											kCGEventTapOptionDefault, 
-											CGEventMaskBit(kCGEventScrollWheel),
-											EventTapCallBack,
-											self);
+    machPort = CGEventTapCreate (kCGSessionEventTap, kCGTailAppendEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventScrollWheel), eventTapCallBack, self);
 
-    objRunLoopSource = CFMachPortCreateRunLoopSource (NULL, objMachPort, 0);
+    runLoopSource = CFMachPortCreateRunLoopSource (NULL, machPort, 0);
     
-    objRunLoopRef = CFRunLoopGetCurrent();
+    runLoopRef = CFRunLoopGetCurrent();
     
-    CFRunLoopAddSource(objRunLoopRef, objRunLoopSource, kCFRunLoopCommonModes);
+    CFRunLoopAddSource(runLoopRef, runLoopSource, kCFRunLoopCommonModes);
     
-    CGEventTapEnable(objMachPort, true);
+    CGEventTapEnable(machPort, true);
     
     /*Run the loop that checks for events*/
     CFRunLoopRun();
-        
+    
 }
 
-- (int64_t) NewInt64DeltaValue:(int64_t) intCurrentValue Factor: (double) fltFactor Invert:(BOOL) blnInvert
-{
-    int64_t intNewValue;
-    if(intCurrentValue > 0)
-        intNewValue = floor(((double)intCurrentValue)*fltFactor);
+- (int64_t) newInt64DeltaValue:(int64_t) currentValue factor: (double) factor invert:(BOOL) invert {
+    int64_t newValue;
+    
+    if(currentValue > 0)
+        newValue = floor(((double)currentValue)*factor);
     else
-        intNewValue = ceil(((double)intCurrentValue)*fltFactor);
+        newValue = ceil(((double)currentValue)*factor);
     
-    if(blnInvert)
-        intNewValue = -intNewValue;
+    if(invert)
+        newValue = -newValue;
     
-    return intNewValue;
+    return newValue;
 }
 
-- (double) NewDoubleDeltaValue:(double) dblCurrentValue Factor: (double) fltFactor Invert:(BOOL) blnInvert
-{
-    double dblNewValue;
+- (double) newDoubleDeltaValue:(double) currentValue factor: (double) factor invert:(BOOL) invert {
+    double newValue;
     
-    dblNewValue = dblCurrentValue*fltFactor;
+    newValue = currentValue*factor;
     
-    if(blnInvert)
-        dblNewValue = -1.0*dblNewValue;
+    if(invert)
+        newValue = -1.0*newValue;
     
-    return dblNewValue;
+    return newValue;
 }
 
-CGEventRef EventTapCallBack(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
-{
+CGEventRef eventTapCallBack(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    
 	/*Make sure we have a scroll event and that we have a pointer to the zoom object*/
 	if(type != kCGEventScrollWheel || !refcon)
         return event;
@@ -128,95 +116,96 @@ CGEventRef EventTapCallBack(CGEventTapProxy proxy, CGEventType type, CGEventRef 
      shift + option
 	*/
 	
-	ZoomInverter *objZoomInv = refcon;
+	ZoomInverter *zoomInverter = refcon;
+    CGEventFlags eventFlags = CGEventGetFlags(event) & (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskControl);
+    int64_t rawDelta1, rawDelta2, rawPointDelta1, rawPointDelta2;
+    double fixedDelta1, fixedDelta2;
+    struct DeviceSettings eventDeviceSettings;
     
-    if(objZoomInv.ForDeviceWithProcessId && CGEventGetDoubleValueField(event, kCGEventSourceUnixProcessID) == 0)
-        return event;
+    if(CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID) == 0)
+        eventDeviceSettings = zoomInverter.nonPidDeviceSettings;
+    else
+        eventDeviceSettings = zoomInverter.pidDeviceSettings;
     
-    CGEventFlags objEventFlags = CGEventGetFlags(event) & (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskControl);
-    int64_t intRawDelta1, intRawDelta2, intRawPointDelta1, intRawPointDelta2, intPid;
-    double dblFixedDelta1, dblFixedDelta2;
+    rawDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
+    rawDelta2 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
+    rawPointDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
+    rawPointDelta2 = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+    fixedDelta1 = CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
+    fixedDelta2 = CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
     
-    intPid = CGEventGetIntegerValueField(event, kCGEventSourceUnixProcessID);
-    intRawDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1);
-    intRawDelta2 = CGEventGetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2);
-    intRawPointDelta1 = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
-    intRawPointDelta2 = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
-    dblFixedDelta1 = CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
-    dblFixedDelta2 = CGEventGetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
-    
-    if(intRawDelta1 != 0 || intRawPointDelta1 != 0 || dblFixedDelta1 != 0)
+    if(rawDelta1 != 0 || rawPointDelta1 != 0 || fixedDelta1 != 0)
     {
         /*Check if a horizontal zoom is active*/
-        if((objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand) ||
-            objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskShift)))
+        if((eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand) ||
+            eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskShift)))
         {
-            intRawDelta1 = [objZoomInv NewInt64DeltaValue:intRawDelta1 Factor:objZoomInv.FactorHorizontalZoom Invert:objZoomInv.InvertHorizontalZoom];
-            intRawPointDelta1 = [objZoomInv NewInt64DeltaValue:intRawPointDelta1 Factor:objZoomInv.FactorHorizontalZoom Invert:objZoomInv.InvertHorizontalZoom];
-            dblFixedDelta1 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta1 Factor:objZoomInv.FactorHorizontalZoom Invert:objZoomInv.InvertHorizontalZoom];
+            rawDelta1 = [zoomInverter newInt64DeltaValue:rawDelta1 factor:eventDeviceSettings.factorHorizontalZoom invert:eventDeviceSettings.invertHorizontalZoom];
+            rawPointDelta1 = [zoomInverter newInt64DeltaValue:rawPointDelta1 factor:eventDeviceSettings.factorHorizontalZoom invert:eventDeviceSettings.invertHorizontalZoom];
+            fixedDelta1 = [zoomInverter newDoubleDeltaValue:fixedDelta1 factor:eventDeviceSettings.factorHorizontalZoom invert:eventDeviceSettings.invertHorizontalZoom];
         }
         /*Check if a multi zoom is active*/
-        else if((objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskControl) ||
-                 objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskControl | kCGEventFlagMaskCommand)))
+        else if((eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskControl) ||
+                 eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskControl | kCGEventFlagMaskCommand)))
         {
-            intRawDelta1 = [objZoomInv NewInt64DeltaValue:intRawDelta1 Factor:objZoomInv.FactorMultiZoom Invert:objZoomInv.InvertMultiZoom];
-            intRawPointDelta1 = [objZoomInv NewInt64DeltaValue:intRawPointDelta1 Factor:objZoomInv.FactorMultiZoom Invert:objZoomInv.InvertMultiZoom];
-            dblFixedDelta1 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta1 Factor:objZoomInv.FactorMultiZoom Invert:objZoomInv.InvertMultiZoom];
+            rawDelta1 = [zoomInverter newInt64DeltaValue:rawDelta1 factor:eventDeviceSettings.factorMultiZoom invert:eventDeviceSettings.invertMultiZoom];
+            rawPointDelta1 = [zoomInverter newInt64DeltaValue:rawPointDelta1 factor:eventDeviceSettings.factorMultiZoom invert:eventDeviceSettings.invertMultiZoom];
+            fixedDelta1 = [zoomInverter newDoubleDeltaValue:fixedDelta1 factor:eventDeviceSettings.factorMultiZoom invert:eventDeviceSettings.invertMultiZoom];
         }
         /*Check if a vertical zoom is active*/
-        else if((objEventFlags == (kCGEventFlagMaskAlternate) ||
-                 objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand | kCGEventFlagMaskShift)))
+        else if((eventFlags == (kCGEventFlagMaskAlternate) ||
+                 eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand | kCGEventFlagMaskShift)))
         {
-            intRawDelta1 = [objZoomInv NewInt64DeltaValue:intRawDelta1 Factor:objZoomInv.FactorVerticalZoom Invert:objZoomInv.InvertVerticalZoom];
-            intRawPointDelta1 = [objZoomInv NewInt64DeltaValue:intRawPointDelta1 Factor:objZoomInv.FactorVerticalZoom Invert:objZoomInv.InvertVerticalZoom];
-            dblFixedDelta1 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta1 Factor:objZoomInv.FactorVerticalZoom Invert:objZoomInv.InvertVerticalZoom];
+            rawDelta1 = [zoomInverter newInt64DeltaValue:rawDelta1 factor:eventDeviceSettings.factorVerticalZoom invert:eventDeviceSettings.invertVerticalZoom];
+            rawPointDelta1 = [zoomInverter newInt64DeltaValue:rawPointDelta1 factor:eventDeviceSettings.factorVerticalZoom invert:eventDeviceSettings.invertVerticalZoom];
+            fixedDelta1 = [zoomInverter newDoubleDeltaValue:fixedDelta1 factor:eventDeviceSettings.factorVerticalZoom invert:eventDeviceSettings.invertVerticalZoom];
         }
         /*Check if a horizontal scroll is active*/
-        else if((objEventFlags == (kCGEventFlagMaskCommand) ||
-                 objEventFlags == (kCGEventFlagMaskShift) ||
-                 objEventFlags == (kCGEventFlagMaskControl | kCGEventFlagMaskShift) ||
-                 objEventFlags == (kCGEventFlagMaskControl | kCGEventFlagMaskCommand)))
+        else if((eventFlags == (kCGEventFlagMaskCommand) ||
+                 eventFlags == (kCGEventFlagMaskShift) ||
+                 eventFlags == (kCGEventFlagMaskControl | kCGEventFlagMaskShift) ||
+                 eventFlags == (kCGEventFlagMaskControl | kCGEventFlagMaskCommand)))
         {
-            intRawDelta1 = [objZoomInv NewInt64DeltaValue:intRawDelta1 Factor:objZoomInv.FactorHorizontalScroll Invert:objZoomInv.InvertHorizontalScroll];
-            intRawPointDelta1 = [objZoomInv NewInt64DeltaValue:intRawPointDelta1 Factor:objZoomInv.FactorHorizontalScroll Invert:objZoomInv.InvertHorizontalScroll];
-            dblFixedDelta1 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta1 Factor:objZoomInv.FactorHorizontalScroll Invert:objZoomInv.InvertHorizontalScroll];
+            rawDelta1 = [zoomInverter newInt64DeltaValue:rawDelta1 factor:eventDeviceSettings.factorHorizontalScroll invert:eventDeviceSettings.invertHorizontalScroll];
+            rawPointDelta1 = [zoomInverter newInt64DeltaValue:rawPointDelta1 factor:eventDeviceSettings.factorHorizontalScroll invert:eventDeviceSettings.invertHorizontalScroll];
+            fixedDelta1 = [zoomInverter newDoubleDeltaValue:fixedDelta1 factor:eventDeviceSettings.factorHorizontalScroll invert:eventDeviceSettings.invertHorizontalScroll];
         }
     }
     
-    if(intRawDelta2 != 0 || intRawPointDelta2 != 0 || dblFixedDelta2 != 0)
+    if(rawDelta2 != 0 || rawPointDelta2 != 0 || fixedDelta2 != 0)
     {
         /*Check if a horizontal zoom is active*/
-        if((objEventFlags == (kCGEventFlagMaskAlternate) ||
-            objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskShift)))
+        if((eventFlags == (kCGEventFlagMaskAlternate) ||
+            eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskShift)))
         {
-            intRawDelta2 = [objZoomInv NewInt64DeltaValue:intRawDelta2 Factor:objZoomInv.FactorHorizontalZoom Invert:objZoomInv.InvertHorizontalZoom];
-            intRawPointDelta2 = [objZoomInv NewInt64DeltaValue:intRawPointDelta2 Factor:objZoomInv.FactorHorizontalZoom Invert:objZoomInv.InvertHorizontalZoom];
-            dblFixedDelta2 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta2 Factor:objZoomInv.FactorHorizontalZoom Invert:objZoomInv.InvertHorizontalZoom];
+            rawDelta2 = [zoomInverter newInt64DeltaValue:rawDelta2 factor:eventDeviceSettings.factorHorizontalZoom invert:eventDeviceSettings.invertHorizontalZoom];
+            rawPointDelta2 = [zoomInverter newInt64DeltaValue:rawPointDelta2 factor:eventDeviceSettings.factorHorizontalZoom invert:eventDeviceSettings.invertHorizontalZoom];
+            fixedDelta2 = [zoomInverter newDoubleDeltaValue:fixedDelta2 factor:eventDeviceSettings.factorHorizontalZoom invert:eventDeviceSettings.invertHorizontalZoom];
         }
         /*Check if a vertical zoom is active*/
-        else if((objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskShift | kCGEventFlagMaskCommand) ||
-                 objEventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand)))
+        else if((eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskShift | kCGEventFlagMaskCommand) ||
+                 eventFlags == (kCGEventFlagMaskAlternate | kCGEventFlagMaskCommand)))
         {
-            intRawDelta2 = [objZoomInv NewInt64DeltaValue:intRawDelta2 Factor:objZoomInv.FactorVerticalZoom Invert:objZoomInv.InvertVerticalZoom];
-            intRawPointDelta2 = [objZoomInv NewInt64DeltaValue:intRawPointDelta2 Factor:objZoomInv.FactorVerticalZoom Invert:objZoomInv.InvertVerticalZoom];
-            dblFixedDelta2 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta2 Factor:objZoomInv.FactorVerticalZoom Invert:objZoomInv.InvertVerticalZoom];
+            rawDelta2 = [zoomInverter newInt64DeltaValue:rawDelta2 factor:eventDeviceSettings.factorVerticalZoom invert:eventDeviceSettings.invertVerticalZoom];
+            rawPointDelta2 = [zoomInverter newInt64DeltaValue:rawPointDelta2 factor:eventDeviceSettings.factorVerticalZoom invert:eventDeviceSettings.invertVerticalZoom];
+            fixedDelta2 = [zoomInverter newDoubleDeltaValue:fixedDelta2 factor:eventDeviceSettings.factorVerticalZoom invert:eventDeviceSettings.invertVerticalZoom];
         }
         /*Check if a horizontal scroll is active*/
-        else if((objEventFlags == (kCGEventFlagMaskControl | kCGEventFlagMaskShift) ||
-                 objEventFlags == (kCGEventFlagMaskShift)))
+        else if((eventFlags == (kCGEventFlagMaskControl | kCGEventFlagMaskShift) ||
+                 eventFlags == (kCGEventFlagMaskShift)))
         {
-            intRawDelta2 = [objZoomInv NewInt64DeltaValue:intRawDelta2 Factor:objZoomInv.FactorHorizontalScroll Invert:objZoomInv.InvertHorizontalScroll];
-            intRawPointDelta2 = [objZoomInv NewInt64DeltaValue:intRawPointDelta2 Factor:objZoomInv.FactorHorizontalScroll Invert:objZoomInv.InvertHorizontalScroll];
-            dblFixedDelta2 = [objZoomInv NewDoubleDeltaValue:dblFixedDelta2 Factor:objZoomInv.FactorHorizontalScroll Invert:objZoomInv.InvertHorizontalScroll];
+            rawDelta2 = [zoomInverter newInt64DeltaValue:rawDelta2 factor:eventDeviceSettings.factorHorizontalScroll invert:eventDeviceSettings.invertHorizontalScroll];
+            rawPointDelta2 = [zoomInverter newInt64DeltaValue:rawPointDelta2 factor:eventDeviceSettings.factorHorizontalScroll invert:eventDeviceSettings.invertHorizontalScroll];
+            fixedDelta2 = [zoomInverter newDoubleDeltaValue:fixedDelta2 factor:eventDeviceSettings.factorHorizontalScroll invert:eventDeviceSettings.invertHorizontalScroll];
         }
     }
 
-    CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, intRawDelta1);
-    CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, intRawDelta2);
-    CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, dblFixedDelta1);
-    CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, dblFixedDelta2);
-    CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, intRawPointDelta1);
-    CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, intRawPointDelta2);
+    CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis1, rawDelta1);
+    CGEventSetIntegerValueField(event, kCGScrollWheelEventDeltaAxis2, rawDelta2);
+    CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1, fixedDelta1);
+    CGEventSetDoubleValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2, fixedDelta2);
+    CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1, rawPointDelta1);
+    CGEventSetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2, rawPointDelta2);
     
     /*Return the event*/
     return event;

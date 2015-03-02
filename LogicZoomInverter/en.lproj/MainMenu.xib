@@ -650,58 +650,46 @@
         <window title="Logic Zoom Inverter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="214" height="214"/>
+            <rect key="contentRect" x="335" y="390" width="214" height="185"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="-2" width="214" height="214"/>
+                <rect key="frame" x="0.0" y="1" width="214" height="185"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="540">
-                        <rect key="frame" x="5" y="155" width="199" height="14"/>
+                        <rect key="frame" x="5" y="143" width="199" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Invert Horizontal Zoom" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="541">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.HorizontalZoomEnabled" id="6Hp-o1-wIm"/>
-                        </connections>
                     </button>
                     <button id="548">
-                        <rect key="frame" x="5" y="140" width="199" height="14"/>
+                        <rect key="frame" x="5" y="128" width="199" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Invert Vertical Zoom" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="549">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.VerticalZoomEnabled" id="O5a-Xe-dig"/>
-                        </connections>
                     </button>
                     <button id="551">
-                        <rect key="frame" x="5" y="125" width="199" height="14"/>
+                        <rect key="frame" x="5" y="113" width="199" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Invert Multi Zoom" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="552">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.MultiZoomEnabled" id="iZd-IR-bS5"/>
-                        </connections>
                     </button>
                     <button id="557">
-                        <rect key="frame" x="5" y="110" width="199" height="14"/>
+                        <rect key="frame" x="5" y="98" width="199" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Invert Horizontal Scroll" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="558">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.HorizontalScrollEnabled" id="gfP-Pa-DNZ"/>
-                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="E8V-ce-vfG">
-                        <rect key="frame" x="6" y="88" width="140" height="14"/>
+                        <rect key="frame" x="6" y="76" width="140" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Horizontal Zoom Factor: " id="53m-lH-l4l">
                             <font key="font" metaFont="smallSystem"/>
@@ -710,91 +698,63 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="aWA-5M-3vO">
-                        <rect key="frame" x="151" y="86" width="43" height="19"/>
+                        <rect key="frame" x="151" y="74" width="43" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="30O-TC-LVE">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.HorizontalZoomFactor" id="hQW-zx-8gu"/>
-                        </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="9u6-lN-G7i">
-                        <rect key="frame" x="194" y="84" width="15" height="22"/>
+                        <rect key="frame" x="194" y="72" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.050000000000000003" minValue="0.001" maxValue="1" doubleValue="1" id="iVL-ET-StI"/>
-                        <connections>
-                            <binding destination="560" name="minValue" keyPath="values.HorizontalZoomFactor" id="ZE1-GU-OnE"/>
-                            <binding destination="560" name="value" keyPath="values.HorizontalZoomFactor" previousBinding="ZE1-GU-OnE" id="EF7-4b-l1c"/>
-                        </connections>
                     </stepper>
                     <textField verticalHuggingPriority="750" id="6Su-1R-AIQ">
-                        <rect key="frame" x="151" y="64" width="43" height="19"/>
+                        <rect key="frame" x="151" y="52" width="43" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="R5Z-WY-1yP">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.VerticalZoomFactor" id="sNo-bW-55r"/>
-                        </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="rc4-Px-u2R">
-                        <rect key="frame" x="194" y="62" width="15" height="22"/>
+                        <rect key="frame" x="194" y="50" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.050000000000000003" minValue="0.001" maxValue="1" doubleValue="1" id="ACg-LA-lL8"/>
-                        <connections>
-                            <binding destination="560" name="minValue" keyPath="values.VerticalZoomFactor" id="23Q-eS-IAO"/>
-                            <binding destination="560" name="value" keyPath="values.HorizontalZoomFactor" previousBinding="23Q-eS-IAO" id="I3K-C0-sZo"/>
-                        </connections>
                     </stepper>
                     <textField verticalHuggingPriority="750" id="8b0-oU-N1Z">
-                        <rect key="frame" x="151" y="42" width="43" height="19"/>
+                        <rect key="frame" x="151" y="30" width="43" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="WkN-Bf-1vu">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.MultiZoomFactor" id="wg5-eo-79U"/>
-                        </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="WTL-c9-oqO">
-                        <rect key="frame" x="194" y="40" width="15" height="22"/>
+                        <rect key="frame" x="194" y="28" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.050000000000000003" minValue="0.001" maxValue="1" doubleValue="1" id="AK6-Iu-RGc"/>
-                        <connections>
-                            <binding destination="560" name="minValue" keyPath="values.MultiZoomFactor" id="mmE-F7-NUk"/>
-                            <binding destination="560" name="value" keyPath="values.HorizontalZoomFactor" previousBinding="mmE-F7-NUk" id="0jF-nm-KXU"/>
-                        </connections>
                     </stepper>
                     <textField verticalHuggingPriority="750" id="qet-DV-JZL">
-                        <rect key="frame" x="151" y="20" width="43" height="19"/>
+                        <rect key="frame" x="151" y="8" width="43" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="HgA-gp-IS5">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                        <connections>
-                            <binding destination="560" name="value" keyPath="values.HorizontalScrollFactor" id="kR0-bZ-90n"/>
-                        </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="Hd2-2H-8RT">
-                        <rect key="frame" x="194" y="18" width="15" height="22"/>
+                        <rect key="frame" x="194" y="6" width="15" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" increment="0.050000000000000003" minValue="0.001" maxValue="1" doubleValue="1" id="vde-0J-QEz"/>
-                        <connections>
-                            <binding destination="560" name="minValue" keyPath="values.HorizontalScrollFactor" id="yLq-Y8-WH3"/>
-                            <binding destination="560" name="value" keyPath="values.HorizontalZoomFactor" previousBinding="yLq-Y8-WH3" id="PpY-6B-BNa"/>
-                        </connections>
                     </stepper>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="rRx-pU-xCI">
-                        <rect key="frame" x="6" y="66" width="140" height="14"/>
+                        <rect key="frame" x="6" y="54" width="140" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Vertical Zoom Factor: " id="GXt-uH-vMf">
                             <font key="font" metaFont="smallSystem"/>
@@ -803,7 +763,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="aoj-do-b63">
-                        <rect key="frame" x="6" y="44" width="140" height="14"/>
+                        <rect key="frame" x="6" y="32" width="140" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Multi Zoom Factor: " id="Oem-rB-d3N">
                             <font key="font" metaFont="smallSystem"/>
@@ -812,7 +772,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="5bp-8b-k3Q">
-                        <rect key="frame" x="6" y="22" width="140" height="14"/>
+                        <rect key="frame" x="6" y="10" width="140" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Horizontal Scroll Factor: " id="fgv-1P-p6k">
                             <font key="font" metaFont="smallSystem"/>
@@ -820,39 +780,46 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <popUpButton verticalHuggingPriority="750" id="dY0-BA-uIi">
+                        <rect key="frame" x="5" y="159" width="205" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="zah-3D-e6I">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="Col-vY-eFa">
+                                <items>
+                                    <menuItem title="Non-PID Devices" id="oyU-Qe-B2h"/>
+                                    <menuItem title="PID Devices" id="kmf-tO-fTY"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="deviceTypeSelected:" target="494" id="QwF-da-lFP"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="228" y="64"/>
+            <point key="canvasLocation" x="228" y="49.5"/>
         </window>
         <customObject id="494" customClass="LogicZoomInverterAppDelegate">
             <connections>
-                <outlet property="chkInvertHorizontalScroll" destination="557" id="er8-km-0T8"/>
-                <outlet property="chkInvertHorizontalZoom" destination="540" id="YbA-FB-2zv"/>
-                <outlet property="chkInvertMultiZoom" destination="551" id="jxe-fp-ads"/>
-                <outlet property="chkInvertVerticalZoom" destination="548" id="RX7-GZ-bJO"/>
+                <outlet property="deviceTypeSelectionBox" destination="dY0-BA-uIi" id="X6q-aP-Uvi"/>
+                <outlet property="horizontalScrollFactorInput" destination="qet-DV-JZL" id="fsZ-XD-N1T"/>
+                <outlet property="horizontalScrollFactorStepper" destination="Hd2-2H-8RT" id="hdi-S2-bd4"/>
+                <outlet property="horizontalZoomFactorInput" destination="aWA-5M-3vO" id="aC0-f7-Gfk"/>
+                <outlet property="horizontalZoomFactorStepper" destination="9u6-lN-G7i" id="pEX-cH-aB0"/>
+                <outlet property="invertHorizontalScrollCheckBox" destination="557" id="LnM-kS-hRa"/>
+                <outlet property="invertHorizontalZoomCheckBox" destination="540" id="yB0-L9-v3T"/>
+                <outlet property="invertMultiZoomCheckBox" destination="551" id="jR4-Vx-O5Z"/>
+                <outlet property="invertVerticalZoomCheckBox" destination="548" id="z58-YY-AaU"/>
+                <outlet property="multiZoomFactorInput" destination="8b0-oU-N1Z" id="PHP-gx-7AL"/>
+                <outlet property="multiZoomFactorStepper" destination="WTL-c9-oqO" id="1tO-RP-aGX"/>
+                <outlet property="verticalZoomFactorInput" destination="6Su-1R-AIQ" id="fdM-Su-aVK"/>
+                <outlet property="verticalZoomFactorStepper" destination="rc4-Px-u2R" id="vQp-WG-Gkc"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
-        <userDefaultsController representsSharedInstance="YES" id="560">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="VerticalZoomEnabled" value="YES"/>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="HorizontalScrollEnabled" value="YES"/>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="MultiZoomEnabled" value="YES"/>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="HorizontalZoomEnabled" value="YES"/>
-                <userDefinedRuntimeAttribute type="number" keyPath="HorizontalZoomFactor">
-                    <integer key="value" value="1"/>
-                </userDefinedRuntimeAttribute>
-                <userDefinedRuntimeAttribute type="number" keyPath="VerticalZoomFactor">
-                    <integer key="value" value="1"/>
-                </userDefinedRuntimeAttribute>
-                <userDefinedRuntimeAttribute type="number" keyPath="MultiZoomFactor">
-                    <integer key="value" value="1"/>
-                </userDefinedRuntimeAttribute>
-                <userDefinedRuntimeAttribute type="number" keyPath="HorizontalScrollFactor">
-                    <integer key="value" value="1"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
-        </userDefaultsController>
+        <userDefaultsController representsSharedInstance="YES" id="560"/>
     </objects>
 </document>
